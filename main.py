@@ -18,7 +18,8 @@ with open("index.html", "w+") as index:
         url, version = url.replace("Home-page:", "").strip(), version.replace("Version:", "").strip()
         if i == "restricted-functions": url = "https://github.com/donno2048/restricted-functions" # special case, has its own website
         open(folder + "/index.html", "w+").write("<!DOCTYPE html><html><body><a href=\"git+%s#egg=%s-%s\">%s-%s</a><br/></body></html>" % (url, i, version, i, version))
-        index.write("<a href=\"/%s/\">%s</a><br/>" % (folder, i))
+        index.write("<a href=\"%s/\">%s</a><br/>" % (folder, i))
+    rmtree("pydonno", ignore_errors=True)
     mkdir("pydonno")
     version, = filter(lambda string: string.startswith("Version:"), getstatusoutput("pip3 show pydonno")[1].splitlines())
     version = version.replace("Version:", "").strip()
