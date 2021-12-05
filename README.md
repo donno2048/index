@@ -1,6 +1,6 @@
 # Index
 
-A personal python package index
+A personal python package index (all my packages except _spamcmd_)
 
 ## Install requirement
 
