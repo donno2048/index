@@ -2,7 +2,7 @@ from re import sub
 from sys import argv
 from tqdm import tqdm
 from shutil import rmtree
-from os import mkdir, system
+from os import mkdir
 from urllib.request import urlopen
 from subprocess import getstatusoutput
 from http.server import test, SimpleHTTPRequestHandler
