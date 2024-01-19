@@ -14,7 +14,8 @@ with open("index.html", "w+") as index:
         folder = sub(r"[-_.]+", "-", i).lower()
         rmtree(folder, ignore_errors=True)
         mkdir(folder)
-        version, url = filter(lambda string: string.startswith("Home-page:") or string.startswith("Version:"), getstatusoutput("pip3 show " + i)[1].splitlines())
+        try: version, url = filter(lambda string: string.startswith("Home-page:") or string.startswith("Version:"), getstatusoutput("pip3 show " + i)[1].splitlines())
+        except ValueError: continue
         url, version = url.replace("Home-page:", "").strip(), version.replace("Version:", "").strip()
         if i == "restricted-functions": url = "https://github.com/donno2048/restricted-functions" # special case, has its own website
         open(folder + "/index.html", "w+").write("<!DOCTYPE html><html><body><a href=\"git+%s#egg=%s-%s\">%s-%s</a><br/></body></html>" % (url, i, version, i, version))
