@@ -4,7 +4,7 @@ A personal python package index (all my packages except _spamcmd_)
 
 ## Install requirement
 
-`pip3 install tqdm pydonno -U`
+`pip3 install tqdm pydonno --no-cache-dir --force-reinstall --no-build-isolation`
 
 ## Usage
 

@@ -1,5 +1,5 @@
 from re import sub
-from sys import argv
+from sys import argv, executable
 from tqdm import tqdm
 from shutil import rmtree
 from os import mkdir
@@ -14,7 +14,7 @@ with open("index.html", "w+") as index:
         folder = sub(r"[-_.]+", "-", i).lower()
         rmtree(folder, ignore_errors=True)
         mkdir(folder)
-        try: version, url = filter(lambda string: string.startswith("Home-page:") or string.startswith("Version:"), getstatusoutput("pip3 show " + i)[1].splitlines())
+        try: version, url = filter(lambda string: string.startswith("Home-page:") or string.startswith("Version:"), getstatusoutput(executable + " -m pip show " + i)[1].splitlines())
         except ValueError: continue
         url, version = url.replace("Home-page:", "").strip(), version.replace("Version:", "").strip()
         if i == "restricted-functions": url = "https://github.com/donno2048/restricted-functions" # special case, has its own website
@@ -22,7 +22,7 @@ with open("index.html", "w+") as index:
         index.write("<a href=\"%s/\">%s</a><br/>" % (folder, i))
     rmtree("pydonno", ignore_errors=True)
     mkdir("pydonno")
-    version, = filter(lambda string: string.startswith("Version:"), getstatusoutput("pip3 show pydonno")[1].splitlines())
+    version, = filter(lambda string: string.startswith("Version:"), getstatusoutput(executable + " -m pip show pydonno")[1].splitlines())
     version = version.replace("Version:", "").strip()
     open("pydonno" + "/index.html", "w+").write("<!DOCTYPE html><html><body><a href=\"git+https://github.com/donno2048/pydonno#egg=pydonno-%s\">pydonno-%s</a><br/></body></html>" % (version, version))
     index.write("<a href=\"/pydonno/\">pydonno</a>")
