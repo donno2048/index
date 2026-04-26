@@ -3,7 +3,7 @@
 A personal python package index (all my packages except _spamcmd_)
 
 UPDATE:
-> Every non python 3.14 compatible package was removed in the latest run, will not fix as I'm not really using this.
+> Latest run on Python 3.14 broke this, I won't fix it as I'm not really using it... deprecating.
 
 ## Install requirement
 
